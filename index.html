@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+  <div class="backdrop">
+    <div class="rules-info">
+      <h1>RULES</h1>
+      <div class="close-rules-info">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="game-info--container">
+    <ul class="game-list">
+      <li class="game-list--item">ROCK</li>
+      <li class="game-list--item">PAPER</li>
+      <li class="game-list--item">SCISSORS</li>
+      <li class="game-list--item">LIZARD</li>
+      <li class="game-list--item">SPOCK</li>
+    </ul>
+
+    <div class="score-count--container">
+      <p class="score-tag">SCORE</p>
+      <p class="score-count">12</p>
+    </div>
+  </div>
+
+  <div class="playground">
+
+    <div class="choice--container open">
+      <div class="pentagon--container"></div>
+
+      <div class="pentagon-first-line">
+        <div class="spock choice-button">
+          <div class="choice-icon-background">
+            <img src="images/icon-spock.svg" alt="SPOCK">
+          </div>
+        </div>
+        <div class="scissors choice-button">
+          <div class="choice-icon-background">
+            <img src="images/icon-scissors.svg" alt="SCISSORS">
+          </div>
+        </div>
+        <div class="paper choice-button">
+          <div class="choice-icon-background">
+            <img src="images/icon-paper.svg" alt="PAPER">
+          </div>
+        </div>
+      </div>
+      <div class="pentagon-second-line">
+        <div class="lizard choice-button">
+          <div class="choice-icon-background">
+            <img src="images/icon-lizard.svg" alt="LIZARD">
+          </div>
+        </div>
+        <div class="rock choice-button">
+          <div class="choice-icon-background">
+            <img src="images/icon-rock.svg" alt="ROCK">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="game-outcome">
+      <div class="choices">
+        <div class="player-choice">
+          <!-- <div class="chosen-button">
+            <div class="outcome-icon-background">
+              <img src="images/icon-rock.svg" alt="ROCK">
+            </div>
+          </div> -->
+          <div class="back-circle"></div>
+          <p>YOU PICKED</p>
+        </div>
+        <div class="house-choice">
+          <!-- <div class="chosen-button">
+            <div class="outcome-icon-background">
+              <img src="images/icon-lizard.svg" alt="LIZARD">
+            </div>
+          </div> -->
+          <div class="back-circle"></div>
+          <p>THE HOUSE PICKED</p>
+        </div>
+      </div>
+      <div class="outcome-info">
+        <h1 class='outcome-text'>YOU WIN</h1>
+        <button class="play-again">PLAY AGAIN</button>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="rules-button">RULES</button>
+
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
