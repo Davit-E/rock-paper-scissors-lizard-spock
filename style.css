@@ -33,7 +33,7 @@ body {
   overflow: hidden;
 }
 .rules-info {
-  min-height: 100vh;
+  min-height: 100%;
   width: 100%;
   background: rgb(255, 255, 255) url('images/image-rules-bonus.svg');
   display: flex;
@@ -75,7 +75,7 @@ body {
 
 .game-info--container {
   width: 85%;
-  max-width: 40rem;
+  max-width: 50rem;
   height: auto;
   display: flex;
   justify-content: space-between;
@@ -145,8 +145,6 @@ p {
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  top: 1;
-  left: 1;
   z-index: -1;
 }
 .pentagon-first-line {
@@ -175,14 +173,17 @@ p {
   cursor: pointer;
   transition-property: transform;
   transition-duration: 0.25s;
-
+  box-shadow: 0px 5px,
+              0px 7px 10px rgb(0, 0, 0);
 }
 .choice-button:active {
+  box-shadow: 0px 3px,
+              0px 15px 30px rgb(0, 0, 0);
   transform: translateY(0.25rem);
+  transition: box-shadow 0.05s;
 }
 
-.choice-icon-background,
-.outcome-icon-background {
+.choice-icon-background {
   background: white;
   border-radius: 100%;
   width: 4.6rem;
@@ -205,61 +206,36 @@ p {
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
+
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 
 .spock {
   margin-top: auto;
   background: linear-gradient(rgb(64, 185, 207), rgb(82, 190, 209));
-  box-shadow: 0px 5px rgb(60, 143, 158),
-              0px 7px 10px rgb(0, 0, 0);
-}
-.spock:active {
-  box-shadow: 0px 3px rgb(60, 143, 158),
-              0px 15px 30px rgb(0, 0, 0);
-  transition: box-shadow 0.05s;
+  color: rgb(60, 143, 158);
 }
 .scissors {
   background: linear-gradient(rgb(236, 158, 14), rgb(236, 169, 34));
-  box-shadow: 0px 5px rgb(175, 125, 25),
-              0px 7px 10px rgb(0, 0, 0);
-}
-.scissors:active {
-  box-shadow: 0px 3px rgb(175, 125, 25),
-              0px 15px 30px rgb(0, 0, 0);
-  transition: box-shadow 0.05s;
+  color: rgb(175, 125, 25);
 }
 .paper {
   margin-top: auto;
   background: linear-gradient(rgb(72, 101, 244), rgb(86, 113, 245));
-  box-shadow: 0px 5px rgb(62, 82, 180),
-              0px 7px 10px rgb(0, 0, 0);
+  color: rgb(62, 82, 180);
 }
-.paper:active {
-  box-shadow: 0px 3px rgb(62, 82, 180),
-              0px 15px 30px rgb(0, 0, 0);
-  transition: box-shadow 0.05s;
-}
-
 .lizard {
   background: linear-gradient(rgb(131, 79, 227), rgb(140, 93, 230));
-  box-shadow: 0px 5px rgb(107, 71, 177),
-              0px 7px 10px rgb(0, 0, 0);
-}
-.lizard:active {
-  box-shadow: 0px 3px rgb(107, 71, 177),
-              0px 15px 30px rgb(0, 0, 0);
-  transition: box-shadow 0.05s;
+  color: rgb(107, 71, 177);
 }
 .rock {
   background: linear-gradient(rgb(221, 46, 78), rgb(221, 64, 93));
-  box-shadow: 0px 5px rgb(162, 46, 68),
-              0px 7px 10px rgb(0, 0, 0);
-}
-.rock:active {
-  box-shadow: 0px 3px rgb(162, 46, 68),
-              0px 15px 30px rgb(0, 0, 0);
-  transition: box-shadow 0.05s;
+  color: rgb(162, 46, 68);
 }
 
 .rules-button {
@@ -317,7 +293,6 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background: black; */
 }
 
 .back-circle {
@@ -327,12 +302,13 @@ p {
   border-radius: 100%;
   position: absolute;
   top: 4%;
-  opacity: 1;
   z-index: -2;
 }
 
-.house-choice .choice-button{
-  /* opacity: 0; */
+.house-choice .choice-button,
+.outcome-info {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .outcome-info {
@@ -361,13 +337,10 @@ p {
 .play-again:active,
 .play-again:hover {
   color: rgb(221, 46, 78);
-  /* background: rgb(240, 240, 240); */
 }
-
 
 .open {
   display: flex !important;
-  opacity: 1 !important;
 }
 .winner {
   box-shadow: 0px 0px 0px 25px rgba(255, 255, 255, 0.03),
@@ -376,8 +349,141 @@ p {
 }
 
 
+@media (min-width: 60rem){
+  .rules-info {
+    width: 40%;
+    height: 30rem;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background-position: 50% 70%;
+  }
+  .rules-info h1 {
+   margin: 0;
+  }
+  .close-rules-info {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+  .game-list--item{
+    font-size: 1.3rem;
+    line-height: 1rem;
+  }
+  .score-count--container {
+    width: 8rem;
+    height: 6rem;
+    border-radius: 0.4rem;
+  }
+  .score-tag {
+    font-size: 0.8rem;
+  }
+  .score-count {
+    font-size: 3rem;
+  }
+  .pentagon--container {
+    height: 25rem;
+    width: 25rem;
+  }
+  .pentagon-first-line {
+    width: 34rem;
+    height: 24rem;
+    padding-bottom: 4rem;
+    padding-top: 1rem;
+  }
+  .pentagon-second-line {
+    width: 23rem;
+    margin-bottom: 3.1rem;
+  }
+  .choice-button {
+    width: 9rem;
+    height: 9rem;
+    transition-property: transform;
+    transition-duration: 0.25s;
+    box-shadow: 0px 7px,
+                0px 10px 20px rgb(0, 0, 0);
+  }
+  .choice-button:active {
+    box-shadow: 0px 4px,
+                0px 25px 40px rgb(0, 0, 0);
+  }
+  .choice-icon-background {
+    width: 6.8rem;
+    height: 6.8rem;
+    box-shadow: inset 0px 6px rgb(226, 226, 226);
+  }
+  .choice-button:active {
+    transform: translateY(0.5rem);
+  }
+  .choice-button:active .choice-icon-background {
+    box-shadow: inset 0px 4px rgb(226, 226, 226);
+  }
+  .choice-button img {
+    width: 3rem;
+  }
+  .rules-button {
+    margin-left: auto;
+    margin-right: 2rem;
+  }
 
-
+  .game-outcome {
+    height: auto;
+    width: auto;
+    margin-top: 0;
+  }
+  .choices {
+    height: 100%;
+    width: 80%;
+    max-width: 70rem;
+    margin-top: auto;
+  }
+  .player-choice,
+  .house-choice {
+    width: auto;
+  }
+  .choices p {
+    margin-bottom: 1.8rem;
+    margin-top: 0;
+    font-size: 1.2rem;
+    order: 1;
+  }
+  .choices .choice-button {
+    order: 3;
+    width: 15rem;
+    height: 15rem;
+    box-shadow: 0px 9px,
+                0px 15px 30px rgb(0, 0, 0);
+  }
+  .choices .choice-icon-background {
+    width: 11rem;
+    height: 11rem;
+    box-shadow: inset 0px 9px rgb(226, 226, 226);
+  }
+  .choices img {
+    width: 4.5rem;
+  }
+  .back-circle {
+    width: 11rem;
+    height: 11rem;
+    top: 28.2%;
+    order: 2;
+  }
+  .outcome-info {
+    margin-top: 1rem;
+    margin-bottom: auto;
+    position: absolute;
+  }
+  .winner {
+    box-shadow: 0px 0px 0px 80px rgba(255, 255, 255, 0.03),
+                0px 0px 0px 130px rgba(255, 255, 255, 0.03),
+                0px 0px 0px 190px rgba(255, 255, 255, 0.03);
+  }
+}
 
 
 

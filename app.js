@@ -6,13 +6,13 @@ var choiceButtons = document.querySelectorAll('.choice-button');
 var choiceContainer = document.querySelector('.choice--container');
 var gameOutcome = document.querySelector('.game-outcome');
 var playAgain = document.querySelector('.play-again');
-var playerButton = document.querySelector('.player-choice .chosen-button');
 
 var playerChoice = document.querySelector('.player-choice');
 var houseChoice = document.querySelector('.house-choice');
+var outcomeText = document.querySelector('.outcome-text');
+var outcomeInfo = document.querySelector('.outcome-info');
+var scoreCount = document.querySelector('.score-count');
 
-var arr = ['spock', 'scissors', 'paper', 'lizard', 'rock'];
-var arr2 = [{}];
 var spock = {
   beats: ['scissors', 'rock']
 };
@@ -29,11 +29,6 @@ var rock = {
   beats: ['lizard', 'scissors']
 };
 
-var rules = {
-
-};
-
-console.log(choiceButtons);
 rulesButton.addEventListener('click', function () {
   backdrop.classList.add('open');
 });
@@ -50,13 +45,45 @@ rulesInfo.addEventListener('click', function (event) {
 var tempButton = 0;
 var tempRandButton = 0;
 var randButton = 0;
+var playerScore = 0;
+var playerCircle;
+var houseCircle;
+if (window.name !== '') {
+  playerScore = window.name;
+}
+scoreCount.textContent = playerScore;
 choiceButtons.forEach(function (button) {
   button.addEventListener('click', function () {
     clear();
     randButton = randChoice();
     tempButton = button.cloneNode(true);
     playerChoice.prepend(tempButton);
-    compare(tempButton, randButton);
+    var whoWon = compare(tempButton, randButton);
+    playerCircle = document.querySelector('.player-choice .back-circle');
+    houseCircle = document.querySelector('.house-choice .back-circle');
+    houseButton = document.querySelector('.house-choice .choice-button');
+
+    setTimeout(function () {
+      houseButton.style.opacity = '1';
+    }, 1000);
+
+    setTimeout(function () {
+      if (whoWon === 'player') {
+        outcomeText.textContent = 'YOU WIN';
+        playerScore ++;
+        playerCircle.classList.add('winner');
+      }else if (whoWon === 'house') {
+        outcomeText.textContent = 'YOU LOSE';
+        playerScore = 0;
+        houseCircle.classList.add('winner');
+      }else {
+        outcomeText.textContent = 'DRAW';
+      }
+      outcomeInfo.style.opacity = 1;
+      outcomeInfo.style.pointerEvents = 'all';
+      window.name = playerScore;
+      scoreCount.textContent = window.name;
+    }, 1500);
 
     setTimeout(function () {
       choiceContainer.classList.remove('open');
@@ -65,6 +92,21 @@ choiceButtons.forEach(function (button) {
   });
 });
 
+function clear() {
+  if (playerCircle) {
+    playerCircle.classList.remove('winner');
+  }
+  if (houseCircle) {
+    houseCircle.classList.remove('winner');
+  }
+  outcomeInfo.style.opacity = 0;
+  outcomeInfo.style.pointerEvents = 'none';
+  var outcomeButtons = document.querySelectorAll('.choices .choice-button');
+  outcomeButtons.forEach(function (button) {
+    button.parentNode.removeChild(button);
+  });
+}
+
 function randChoice() {
   var randNum = Math.floor(Math.random() * 5);
   tempRandButton = choiceButtons[randNum].cloneNode(true);
@@ -72,32 +114,19 @@ function randChoice() {
   return tempRandButton;
 }
 
-
-function clear() {
-  var outcomeButtons = document.querySelectorAll('.choices .choice-button');
-  outcomeButtons.forEach(function (button) {
-    button.parentNode.removeChild(button);
-  });
-}
-
 function compare(player, house) {
-  console.log(player.classList[0]);
-  console.log(house.classList[0]);
   var playerToVar = window[player.classList[0]];
-  // var houseToVar = window[player.classList[0]];
   if (player.classList[0] === house.classList[0]) {
-    return console.log('Draw');
+    return;
   }else {
     for (var i = 0; i < playerToVar.beats.length; i++) {
       if (playerToVar.beats[i] === house.classList[0]) {
-        return console.log('player wins!');
+        return 'player';
       }
     }
-    return console.log('house wins!');
+    return 'house';
   }
-
 }
-
 
 playAgain.addEventListener('click', function () {
   setTimeout(function () {
