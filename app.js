@@ -83,7 +83,7 @@ choiceButtons.forEach(function (button) {
       outcomeInfo.style.pointerEvents = 'all';
       window.name = playerScore;
       scoreCount.textContent = window.name;
-    }, 1500);
+    }, 2000);
 
     setTimeout(function () {
       choiceContainer.classList.remove('open');
