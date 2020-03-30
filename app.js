@@ -12,6 +12,7 @@ var houseChoice = document.querySelector('.house-choice');
 var outcomeText = document.querySelector('.outcome-text');
 var outcomeInfo = document.querySelector('.outcome-info');
 var scoreCount = document.querySelector('.score-count');
+var choices = document.querySelector('.choices');
 
 var spock = {
   beats: ['scissors', 'rock']
@@ -68,6 +69,7 @@ choiceButtons.forEach(function (button) {
     }, 1000);
 
     setTimeout(function () {
+      choices.style.maxWidth = '70rem';
       if (whoWon === 'player') {
         outcomeText.textContent = 'YOU WIN';
         playerScore ++;
@@ -101,6 +103,7 @@ function clear() {
   }
   outcomeInfo.style.opacity = 0;
   outcomeInfo.style.pointerEvents = 'none';
+  choices.style.maxWidth = '35rem';
   var outcomeButtons = document.querySelectorAll('.choices .choice-button');
   outcomeButtons.forEach(function (button) {
     button.parentNode.removeChild(button);

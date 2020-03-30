@@ -23,7 +23,7 @@ body {
 }
 .backdrop {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   min-height: 100vh;
@@ -440,8 +440,9 @@ p {
   .choices {
     height: 100%;
     width: 80%;
-    max-width: 70rem;
+    max-width: 35rem;
     margin-top: auto;
+    transition: max-width 0.8s ease-out;
   }
   .player-choice,
   .house-choice {
