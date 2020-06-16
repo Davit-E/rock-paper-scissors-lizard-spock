@@ -76,7 +76,9 @@ choiceButtons.forEach(function (button) {
         playerCircle.classList.add('winner');
       }else if (whoWon === 'house') {
         outcomeText.textContent = 'YOU LOSE';
-        playerScore = 0;
+        if (playerScore > 0) {
+          playerScore--;
+        }
         houseCircle.classList.add('winner');
       }else {
         outcomeText.textContent = 'DRAW';
